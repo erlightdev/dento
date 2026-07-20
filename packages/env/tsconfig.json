@@ -1,0 +1,3 @@
+{
+  "extends": "@Dento/config/tsconfig.base.json"
+}

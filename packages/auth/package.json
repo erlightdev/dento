@@ -1,0 +1,24 @@
+{
+  "name": "@Dento/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@Dento/db": "*",
+    "@Dento/env": "*",
+    "better-auth": "1.6.23",
+    "dotenv": "^17.4.2",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@Dento/config": "*",
+    "typescript": "^6"
+  }
+}
