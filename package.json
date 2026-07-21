@@ -1,40 +1,40 @@
 {
-  "name": "Dento",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "type": "module",
-  "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "check-types": "turbo run check-types",
-    "dev:web": "turbo run dev -F web",
-    "dev:server": "turbo run dev -F server",
-    "db:push": "turbo run db:push -F @Dento/db",
-    "db:studio": "turbo run db:studio -F @Dento/db",
-    "db:generate": "turbo run db:generate -F @Dento/db",
-    "db:migrate": "turbo run db:migrate -F @Dento/db",
-    "db:start": "turbo run db:start -F @Dento/db",
-    "db:watch": "turbo run db:watch -F @Dento/db",
-    "db:stop": "turbo run db:stop -F @Dento/db",
-    "db:down": "turbo run db:down -F @Dento/db",
-    "db:seed-admin": "tsx packages/db/src/seed-admin.ts",
-    "check": "biome check --write ."
-  },
-  "dependencies": {
-    "@Dento/env": "*",
-    "dotenv": "^17.4.2",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.5.2",
-    "@Dento/config": "*",
-    "@types/node": "^22.13.14",
-    "@types/nodemailer": "^8.0.1",
-    "turbo": "^2.10.2",
-    "typescript": "^6"
-  },
-  "packageManager": "npm@11.18.0"
+	"name": "Dento",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"check-types": "turbo run check-types",
+		"dev:web": "turbo run dev -F web",
+		"dev:server": "turbo run dev -F server",
+		"db:push": "turbo run db:push -F @Dento/db",
+		"db:studio": "turbo run db:studio -F @Dento/db",
+		"db:generate": "turbo run db:generate -F @Dento/db",
+		"db:migrate": "turbo run db:migrate -F @Dento/db",
+		"db:start": "turbo run db:start -F @Dento/db",
+		"db:watch": "turbo run db:watch -F @Dento/db",
+		"db:stop": "turbo run db:stop -F @Dento/db",
+		"db:down": "turbo run db:down -F @Dento/db",
+		"db:seed-admin": "tsx packages/db/src/seed-admin.ts",
+		"check": "biome check --write ."
+	},
+	"dependencies": {
+		"@Dento/env": "*",
+		"dotenv": "^17.4.2",
+		"zod": "^4.4.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.2",
+		"@Dento/config": "*",
+		"@types/node": "^22.13.14",
+		"@types/nodemailer": "^8.0.1",
+		"turbo": "^2.10.2",
+		"typescript": "^6"
+	},
+	"packageManager": "npm@11.18.0"
 }

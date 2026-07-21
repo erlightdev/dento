@@ -1,29 +1,29 @@
 {
-  "name": "@Dento/api",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
-  },
-  "scripts": {},
-  "dependencies": {
-    "@Dento/auth": "*",
-    "@Dento/db": "*",
-    "@Dento/env": "*",
-    "@orpc/client": "^1.14.6",
-    "@orpc/openapi": "^1.14.6",
-    "@orpc/server": "^1.14.6",
-    "@orpc/zod": "^1.14.6",
-    "dotenv": "^17.4.2",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "@Dento/config": "*",
-    "hono": "^4.12.27",
-    "typescript": "^6"
-  }
+	"name": "@Dento/api",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@Dento/auth": "*",
+		"@Dento/db": "*",
+		"@Dento/env": "*",
+		"@orpc/client": "^1.14.6",
+		"@orpc/openapi": "^1.14.6",
+		"@orpc/server": "^1.14.6",
+		"@orpc/zod": "^1.14.6",
+		"dotenv": "^17.4.2",
+		"zod": "^4.4.3"
+	},
+	"devDependencies": {
+		"@Dento/config": "*",
+		"hono": "^4.12.27",
+		"typescript": "^6"
+	}
 }
