@@ -7,6 +7,10 @@ export const user = mysqlTable("user", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
+  role: varchar("role", { length: 20 }).default("user").notNull(),
+  banned: boolean("banned").default(false).notNull(),
+  banReason: text("ban_reason"),
+  banExpires: timestamp("ban_expires", { fsp: 3 }),
   createdAt: timestamp("created_at", { fsp: 3 }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { fsp: 3 })
     .defaultNow()

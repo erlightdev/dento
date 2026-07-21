@@ -42,6 +42,61 @@ app.use(
 
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
+app.post("/api/auth-method", async (c) => {
+  const { email } = await c.req.json<{ email: string }>().catch(() => ({ email: "" }));
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRe.test(email)) {
+    return c.json({ error: "invalid_email" }, 400);
+  }
+
+  try {
+    const { db } = await import("@Dento/db");
+    const u = await db.query.user.findFirst({
+      where: (fields, { eq }) => eq(fields.email, email.trim().toLowerCase()),
+      with: {
+        accounts: true,
+      },
+    });
+
+    if (!u) {
+      return c.json({ exists: false, verified: false, methods: [], hasPassword: false });
+    }
+
+    const credentialAccount = u.accounts.find((a) => a.providerId === "credential");
+    const hasPassword = !!credentialAccount?.password;
+
+    const methods = [...new Set(u.accounts.map((a) => a.providerId))].filter((p) =>
+      ["credential", "github", "google"].includes(p)
+    );
+
+    return c.json({
+      exists: true,
+      verified: u.emailVerified,
+      methods,
+      hasPassword,
+    });
+  } catch (err: any) {
+    return c.json({ error: err.message || "Database lookup failed" }, 500);
+  }
+});
+
+app.post("/api/set-password", async (c) => {
+  const { password } = await c.req.json<{ password?: string }>().catch(() => ({ password: "" }));
+  if (!password || password.length < 8) {
+    return c.json({ error: "Password must be at least 8 characters." }, 400);
+  }
+
+  try {
+    await auth.api.setPassword({
+      body: { newPassword: password },
+      headers: c.req.raw.headers,
+    });
+    return c.json({ ok: true });
+  } catch (err: any) {
+    return c.json({ error: err.message || "Could not set the password." }, 400);
+  }
+});
+
 export const apiHandler = new OpenAPIHandler(appRouter, {
   plugins: [
     new OpenAPIReferencePlugin({

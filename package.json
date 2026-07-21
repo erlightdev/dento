@@ -20,6 +20,7 @@
     "db:watch": "turbo run db:watch -F @Dento/db",
     "db:stop": "turbo run db:stop -F @Dento/db",
     "db:down": "turbo run db:down -F @Dento/db",
+    "db:seed-admin": "tsx packages/db/src/seed-admin.ts",
     "check": "biome check --write ."
   },
   "dependencies": {
@@ -28,9 +29,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@Dento/config": "*",
     "@biomejs/biome": "^2.5.2",
+    "@Dento/config": "*",
     "@types/node": "^22.13.14",
+    "@types/nodemailer": "^8.0.1",
     "turbo": "^2.10.2",
     "typescript": "^6"
   },
