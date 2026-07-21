@@ -12,6 +12,7 @@ import { authClient } from "@/lib/auth-client";
 
 import AuthBackLink from "./auth-back-link";
 import ThemeToggle from "./theme-toggle";
+import Logo from "./logo";
 import "./auth.css";
 
 export default function ResetPasswordForm() {
@@ -81,7 +82,7 @@ export default function ResetPasswordForm() {
       </div>
       <div className="flex w-full max-w-[400px] flex-col items-center">
         <div className="auth-enter mb-6 flex size-12 items-center justify-center rounded-full bg-primary shadow-sm">
-          <Monitor className="size-5 text-primary-foreground" />
+          <Logo className="size-6 text-primary-foreground" />
         </div>
         <h1 className="auth-enter auth-enter-delay-1 mb-2 text-center text-3xl font-bold tracking-tight text-gradient font-display" style={{ textWrap: "balance" }}>
           Set new password

@@ -12,6 +12,7 @@ import { authClient } from "@/lib/auth-client";
 
 import AuthBackLink from "./auth-back-link";
 import ThemeToggle from "./theme-toggle";
+import Logo from "./logo";
 import "./auth.css";
 
 function GoogleIcon() {
@@ -268,10 +269,7 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
         {/* Logo */}
         <div className="mb-6 flex justify-center auth-enter">
           <span className="grid size-12 place-items-center rounded-full bg-primary text-primary-foreground shadow-sm">
-            <svg className="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-              <path d="M8 21h8M12 17v4"></path>
-            </svg>
+            <Logo className="size-6" />
           </span>
         </div>
 
