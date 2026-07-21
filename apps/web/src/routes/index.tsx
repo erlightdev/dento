@@ -78,8 +78,6 @@ function HeroSection() {
 					Appointments, patient records, billing & more. Everything your dental
 					practice needs, in one place.
 				</p>
-
-			
 			</div>
 		</section>
 	);

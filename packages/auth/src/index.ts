@@ -28,7 +28,10 @@ export function createAuth() {
 		emailAndPassword: {
 			enabled: true,
 			requireEmailVerification: true,
-			sendResetPassword: async ({ user, url }) => {
+			resetPasswordTokenExpiresIn: 10 * 60, // 10 minutes
+			sendResetPassword: async ({ user, url, token }) => {
+				const tokenVal = token || new URL(url).searchParams.get("token");
+				const resetPasswordUrl = `${env.CORS_ORIGIN}/reset-password?token=${tokenVal}`;
 				await transporter.sendMail({
 					from: env.EMAIL_FROM,
 					to: user.email,
@@ -38,10 +41,10 @@ export function createAuth() {
               <h2>Reset your password</h2>
               <p>Hi ${user.name || "there"},</p>
               <p>Click the link below to reset your password:</p>
-              <a href="${url}" style="display: inline-block; padding: 12px 24px; background: #4f46e5; color: white; text-decoration: none; border-radius: 6px; margin: 16px 0;">
+              <a href="${resetPasswordUrl}" style="display: inline-block; padding: 12px 24px; background: #4f46e5; color: white; text-decoration: none; border-radius: 6px; margin: 16px 0;">
                 Reset Password
               </a>
-              <p style="color: #666; font-size: 14px;">This link expires in 1 hour. If you didn't request a password reset, ignore this email.</p>
+              <p style="color: #666; font-size: 14px;">This link expires in 10 minutes. If you didn't request a password reset, ignore this email.</p>
             </div>
           `,
 				});
