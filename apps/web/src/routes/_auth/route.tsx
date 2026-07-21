@@ -7,8 +7,17 @@ export const Route = createFileRoute("/_auth")({
   beforeLoad: async () => {
     const session = await authClient.getSession();
     if (!session.data) {
+      throw redirect({ to: "/login" });
+    }
+    if (!session.data.user.emailVerified) {
+      throw redirect({ to: "/verify-email" });
+    }
+    const user = session.data.user as Record<string, unknown>;
+    if (user.banned) {
+      await authClient.signOut();
       throw redirect({
         to: "/login",
+        search: { error: "banned" },
       });
     }
     return { session };

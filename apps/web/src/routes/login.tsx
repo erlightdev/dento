@@ -1,19 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 import SignInForm from "@/components/sign-in-form";
 import SignUpForm from "@/components/sign-up-form";
+import ForgotPasswordForm from "@/components/forgot-password-form";
 
 export const Route = createFileRoute("/login")({
   component: RouteComponent,
+  validateSearch: (search: Record<string, unknown>): { error?: string } => ({
+    error: search.error as string | undefined,
+  }),
 });
 
 function RouteComponent() {
-  const [showSignIn, setShowSignIn] = useState(false);
+  const [view, setView] = useState<"signin" | "signup" | "forgot">("signin");
+  const { error } = Route.useSearch();
 
-  return showSignIn ? (
-    <SignInForm onSwitchToSignUp={() => setShowSignIn(false)} />
-  ) : (
-    <SignUpForm onSwitchToSignIn={() => setShowSignIn(true)} />
-  );
+  useEffect(() => {
+    if (error === "banned") {
+      toast.error("Your account has been banned.");
+    }
+  }, [error]);
+
+  switch (view) {
+    case "signup":
+      return <SignUpForm onSwitchToSignIn={() => setView("signin")} />;
+    case "forgot":
+      return <ForgotPasswordForm onBack={() => setView("signin")} />;
+    default:
+      return (
+        <SignInForm
+          onSwitchToSignUp={() => setView("signup")}
+          onSwitchToForgotPassword={() => setView("forgot")}
+        />
+      );
+  }
 }
